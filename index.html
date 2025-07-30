@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Girls' Frontline 2: Exilium, Recruitment Estimator</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic" />
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+  <body>
+    <div
+      x-data='{
+      collapse_pieces: "",
+      access_permissions: "",
+      redundant_pieces: "",
+      credits: "",
+      result_collapse_pieces: "",
+      result_access_permissions: "",
+      result_redundant_pieces: "",
+      result_credits: "",
+      result_total: "",
+      result_expected: "",
+      calculate() {
+        let n = Number(this.collapse_pieces);
+        this.result_collapse_pieces = 0;
+        if (!isNaN(n) && this.collapse_pieces !== "") {
+          this.result_collapse_pieces = Math.floor(n / 150);
+        }
+
+        n = Number(this.access_permissions);
+        this.result_access_permissions = 0;
+        if (!isNaN(n) && this.access_permissions !== "") {
+          this.result_access_permissions = Number(this.access_permissions);
+        }
+
+        n = Number(this.redundant_pieces);
+        this.result_redundant_pieces = 0;
+        if (!isNaN(n) && this.redundant_pieces !== "") {
+          this.result_redundant_pieces = Math.floor(n / 30);
+        }
+
+        n = Number(this.credits);
+        this.result_credits = 0;
+        if (!isNaN(n) && this.credits !== "") {
+          this.result_credits = Math.floor(n / 150);
+        }
+
+        this.result_total = this.result_collapse_pieces + this.result_access_permissions + this.result_redundant_pieces + this.result_credits;
+
+        if (this.result_total > 556) {
+            this.result_expected = 6;
+        } else if (this.result_total > 476) {
+            this.result_expected = 5;
+        } else if (this.result_total > 397) {
+            this.result_expected = 4;
+        } else if (this.result_total > 318) {
+            this.result_expected = 3;
+        } else if (this.result_total > 238) {
+            this.result_expected = 2;
+        } else if (this.result_total > 159) {
+            this.result_expected = 1;
+        } else if (this.result_total > 80) {
+            this.result_expected = 0;
+        } else {
+            this.result_expected = -1;
+        }
+      }
+    }'
+    >
+    <p>ドールズフロントライン2 / Girls' Frontline 2: Exilium の訪問回数計算</p>
+
+      <div style="margin-top: 1em">
+        <label class="flex four" style="align-items: center; gap: 1em">
+          <img style="width: 64px" src="./Item_Icon_Diamond.png" width="64" height="64" />
+          <input style="width: 120px" type="number" x-model="collapse_pieces" placeholder="" @change="calculate" />
+          <span style="width: 32px">➡️</span>
+          <span x-text="result_collapse_pieces" />
+        </label>
+      </div>
+      <div style="margin-top: 1em">
+        <label class="flex four" style="align-items: center; gap: 1em">
+          <img style="width: 64px" src="./Item_Icon_Gacha_UpTicket.png" width="64" height="64" />
+          <input style="width: 120px" type="number" x-model="access_permissions" placeholder="" @change="calculate" />
+          <span style="width: 32px">➡️</span>
+          <span x-text="result_access_permissions" />
+        </label>
+      </div>
+      <div style="margin-top: 1em">
+        <label class="flex four" style="align-items: center; gap: 1em">
+          <img style="width: 64px; height: 64px" src="./Item_Icon_Core.png" width="64" height="64" />
+          <input style="width: 120px" type="number" x-model="redundant_pieces" placeholder="" @change="calculate" />
+          <span style="width: 32px">➡️</span>
+          <span x-text="result_redundant_pieces" />
+        </label>
+      </div>
+
+      <div style="margin-top: 1em">
+        <label class="flex four" style="align-items: center; gap: 1em">
+          <img style="width: 64px" src="./Item_Icon_Credit.png" width="64" height="64" />
+          <input style="width: 120px" type="number" x-model="credits" placeholder="" @change="calculate" />
+          <span style="width: 32px">➡️</span>
+          <span x-text="result_credits" />
+        </label>
+      </div>
+
+      <hr />
+
+      <div style="margin-top: 1em">
+        <div class="flex three" style="align-items: center; gap: 2em">
+          <span style="width: 184px">回数 / Accesses </span>
+          <span style="width: 16px">➡️</span>
+          <span x-text="result_total"></span>
+        </div>
+      </div>
+
+      <div style="margin-top: 1em">
+        <div class="flex three" style="align-items: center; gap: 2em">
+          <span style="width: 184px">期待凸 / Expected Fortifications in 50%</span>
+          <span style="width: 16px">➡️</span>
+          <span x-text="result_expected"></span>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+    <div>Reference: <a href="https://space.bilibili.com/6165300">一棵平衡树</a></div>
+  </body>
+</html>
