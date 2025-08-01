@@ -31,8 +31,9 @@
   </head>
   <body>
     <div
-      style="margin: 1em;"
-      x-data='{ 
+      style="margin: 1em"
+      x-data='{
+      mode: "1", 
       collapse_pieces: "",
       access_permissions: "",
       redundant_pieces: "",
@@ -43,6 +44,9 @@
       result_credits: "",
       result_total: "",
       expected_dolls: "",
+      changeMode() {
+        window.alert("hoge");
+      },
       calculate() {
         let n = Number(this.collapse_pieces);
         this.result_collapse_pieces = 0;
@@ -116,7 +120,7 @@
               <img src="./Item_Icon_Diamond.png" width="64" height="64" />
             </td>
             <td style="width: 120px">
-              <input style="width: 100px" type="number" x-model="collapse_pieces" placeholder="" @change="calculate" />
+              <input style="width: 100px" type="number" min="0" x-model="collapse_pieces" placeholder="" @change="calculate" />
             </td>
             <td style="width: 120px">
               <span x-text="result_collapse_pieces" />
@@ -127,7 +131,7 @@
               <img style="width: 64px" src="./Item_Icon_Gacha_UpTicket.png" width="64" height="64" />
             </td>
             <td style="width: 120px">
-              <input style="width: 100px" type="number" x-model="access_permissions" placeholder="" @change="calculate" />
+              <input style="width: 100px" type="number" min="0" x-model="access_permissions" placeholder="" @change="calculate" />
             </td>
             <td style="width: 120px">
               <span x-text="result_access_permissions" />
@@ -138,7 +142,7 @@
               <img style="width: 64px" src="./Item_Icon_Core.png" width="64" height="64" />
             </td>
             <td style="width: 120px">
-              <input style="width: 100px" type="number" x-model="redundant_pieces" placeholder="" @change="calculate" />
+              <input style="width: 100px" type="number" min="0" x-model="redundant_pieces" placeholder="" @change="calculate" />
             </td>
             <td style="width: 120px">
               <span x-text="result_redundant_pieces" />
@@ -149,7 +153,7 @@
               <img style="width: 64px" src="./Item_Icon_Credit.png" width="64" height="64" />
             </td>
             <td style="width: 120px">
-              <input style="width: 100px" type="number" x-model="credits" placeholder="" @change="calculate" />
+              <input style="width: 100px" type="number" min="0" x-model="credits" placeholder="" @change="calculate" />
             </td>
             <td style="width: 120px">
               <span x-text="result_credits" />
@@ -192,11 +196,12 @@
           </tbody>
         </table>
       </div>
+
       <hr />
     </div>
 
-    <div style="margin-top: 1em;">
-      <p style="margin-left: 1em;">参考 / References:</p>
+    <div style="margin-top: 1em">
+      <p style="margin-left: 1em">参考 / References:</p>
 
       <ul>
         <li id="ref1">
