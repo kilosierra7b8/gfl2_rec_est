@@ -32,8 +32,7 @@
   <body>
     <div
       style="margin: 1em;"
-      x-data='{
-      mode: "1", 
+      x-data='{ 
       collapse_pieces: "",
       access_permissions: "",
       redundant_pieces: "",
@@ -44,9 +43,6 @@
       result_credits: "",
       result_total: "",
       expected_dolls: "",
-      changeMode() {
-        window.alert("hoge");
-      },
       calculate() {
         let n = Number(this.collapse_pieces);
         this.result_collapse_pieces = 0;
